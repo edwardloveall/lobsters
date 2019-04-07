@@ -8,12 +8,6 @@ MIN_MESSAGES = 1
 MAX_MESSAGES = 10
 
 Message.delete_all
-Conversation.delete_all
-conversation = Conversation.create(
-  author: User.first,
-  recipient: User.last,
-  subject: "subject",
-)
 
 User.find_each do |user1|
   CONVOS_PER_USER.times do
@@ -32,7 +26,6 @@ User.find_each do |user1|
         recipient: users[1 - author_index],
         subject: message_index > 0 ? "Re: #{subject}" : subject,
         body: Faker::Hacker.say_something_smart,
-        conversation: conversation,
       )
       raise message.errors.full_messages.to_sentence if !message.persisted?
     end
