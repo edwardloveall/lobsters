@@ -240,7 +240,7 @@ RSpec.feature "add a message to a conversation" do
       author = create(:user, is_moderator: true)
       stub_login_as author
       recipient = create(:user)
-      hat = create(:hat, user: author)
+      create(:hat, user: author)
 
       visit root_path
       click_on "Messages"
